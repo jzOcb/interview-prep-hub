@@ -1,30 +1,27 @@
-import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
+import { getServerSession } from "next-auth"
+import GithubProvider from "next-auth/providers/github"
+import type { NextAuthOptions } from "next-auth"
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
-    GitHub({
+    GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
   ],
   callbacks: {
     async session({ session, token }) {
-      // Add user ID to session
       if (session.user && token.sub) {
-        session.user.id = token.sub
+        (session.user as { id?: string }).id = token.sub
       }
       return session
-    },
-    async jwt({ token, account, profile }) {
-      if (account && profile) {
-        token.githubId = profile.id
-        token.githubUsername = profile.login
-      }
-      return token
     },
   },
   pages: {
     signIn: '/login',
   },
-})
+}
+
+export async function auth() {
+  return await getServerSession(authOptions)
+}

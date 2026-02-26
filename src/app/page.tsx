@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
-      <div className="text-center mb-16 animate-fade-in">
+      <div className="text-center mb-16">
         <div className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
           <span>🚀</span>
           <span>Free & Open Source</span>
@@ -27,15 +27,24 @@ export default async function Home() {
         
         <div className="flex gap-4 justify-center flex-wrap">
           {session ? (
-            <Link href="/dashboard" className="btn-primary">
+            <Link 
+              href="/dashboard" 
+              className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition shadow-lg"
+            >
               Go to Dashboard →
             </Link>
           ) : (
-            <Link href="/api/auth/signin" className="btn-primary">
+            <Link 
+              href="/api/auth/signin" 
+              className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition shadow-lg"
+            >
               Get Started Free →
             </Link>
           )}
-          <Link href="/neetcode" className="btn-secondary">
+          <Link 
+            href="/neetcode" 
+            className="bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold border-2 border-indigo-200 hover:border-indigo-300 hover:bg-indigo-50 transition"
+          >
             Explore NeetCode 150
           </Link>
         </div>
@@ -51,12 +60,11 @@ export default async function Home() {
         ].map((stat, i) => (
           <div 
             key={i} 
-            className="stat-card"
-            style={{ animationDelay: `${i * 100}ms` }}
+            className="bg-white rounded-2xl p-6 shadow-sm border border-indigo-100 text-center"
           >
             <div className="text-2xl mb-2">{stat.icon}</div>
-            <div className="stat-value">{stat.value}</div>
-            <div className="stat-label">{stat.label}</div>
+            <div className="text-3xl font-bold text-indigo-600">{stat.value}</div>
+            <div className="text-sm text-slate-500 mt-1">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -68,7 +76,7 @@ export default async function Home() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="card-interactive p-8">
+          <div className="bg-white rounded-2xl p-8 shadow-sm border border-indigo-100 hover:shadow-md transition cursor-pointer">
             <div className="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center text-2xl mb-4">
               🏗️
             </div>
@@ -78,12 +86,11 @@ export default async function Home() {
               estimation, and real design problems.
             </p>
             <Link href="/system-design" className="text-indigo-600 font-semibold hover:text-indigo-700 inline-flex items-center gap-1">
-              Start Learning 
-              <span className="text-lg">→</span>
+              Start Learning →
             </Link>
           </div>
 
-          <div className="card-interactive p-8">
+          <div className="bg-white rounded-2xl p-8 shadow-sm border border-indigo-100 hover:shadow-md transition cursor-pointer">
             <div className="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-2xl mb-4">
               💻
             </div>
@@ -93,12 +100,11 @@ export default async function Home() {
               difficulty filters, and progress tracking.
             </p>
             <Link href="/neetcode" className="text-green-600 font-semibold hover:text-green-700 inline-flex items-center gap-1">
-              Start Grinding 
-              <span className="text-lg">→</span>
+              Start Grinding →
             </Link>
           </div>
 
-          <div className="card-interactive p-8">
+          <div className="bg-white rounded-2xl p-8 shadow-sm border border-indigo-100 hover:shadow-md transition cursor-pointer">
             <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-2xl mb-4">
               🎴
             </div>
@@ -108,8 +114,7 @@ export default async function Home() {
               interviews. Available in English and Chinese.
             </p>
             <Link href="/flashcards" className="text-orange-600 font-semibold hover:text-orange-700 inline-flex items-center gap-1">
-              Quick Review 
-              <span className="text-lg">→</span>
+              Quick Review →
             </Link>
           </div>
         </div>
@@ -118,7 +123,6 @@ export default async function Home() {
       {/* Progress Sync CTA */}
       {!session && (
         <div className="bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-          {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
           
